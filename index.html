@@ -7,7 +7,7 @@
 <meta name="description" content="Caixas surpresa recheadas com cartas e boosters de TCG, pelúcias, bonecos, roupas, blind boxes, chaveiros e muito mais. Assine a Surpresinha!">
 <meta property="og:title" content="Surpresinha — Clube de Assinatura">
 <meta property="og:description" content="Surpresas nerds todo mês, direto na sua porta.">
-<meta property="og:image" content="assets/caixa-frente.jpg">
+<meta property="og:image" content="assets/caixa-frente.png">
 <meta name="theme-color" content="#9B35D0">
 <link rel="icon" type="image/png" href="assets/blob-risada.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -78,7 +78,9 @@ html{scroll-behavior:smooth;scrollbar-color:#9B35D0 #0B0A0E}
 .boxstage:focus-visible .boxshadow{background:radial-gradient(ellipse at center,rgba(242,232,107,.6) 0%,rgba(126,217,87,.2) 45%,rgba(0,0,0,0) 72%)}
 .cube3d{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateX(-14deg) rotateY(24deg);will-change:transform}
 .face{position:absolute;backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden;border-radius:3px;background:#3B1766}
-.face img{width:100%;height:100%;display:block;object-fit:fill;pointer-events:none;user-select:none;-webkit-user-drag:none}
+.face img{width:100%;height:100%;display:block;object-fit:cover;object-position:center;pointer-events:none;user-select:none;-webkit-user-drag:none}
+.face svg{width:100%;height:100%;display:block;pointer-events:none}
+.box-title{position:absolute;left:2%;top:1.5%;width:96%;height:auto;pointer-events:none;filter:drop-shadow(0 5px 10px rgba(0,0,0,.5))}
 .f-front{left:0;top:0;width:560px;height:395px;transform:translateZ(145.5px)}
 .f-back{left:0;top:0;width:560px;height:395px;transform:rotateY(180deg) translateZ(145.5px)}
 .f-right{left:134.5px;top:0;width:291px;height:395px;transform:rotateY(90deg) translateZ(280px)}
@@ -153,13 +155,63 @@ html{scroll-behavior:smooth;scrollbar-color:#9B35D0 #0B0A0E}
     <img id="gnome" src="assets/gnomo.png" alt="" style="position: absolute; left: 19.5%; bottom: 7%; width: 11.89%; height: auto; pointer-events: none; transform-origin: 50% 100%; transition: transform 1.5s cubic-bezier(0.22, 1, 0.36, 1); will-change: transform">
     <div class="boxstage" id="boxstage" tabindex="0" role="img" aria-label="Caixa Surpresinha em 3D. Arraste ou use as setas do teclado para girar.">
       <div class="boxshadow"></div>
+      <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+        <radialGradient id="boxSmoke"><stop offset="0" stop-color="#C49BFF" stop-opacity=".5"></stop><stop offset="1" stop-color="#C49BFF" stop-opacity="0"></stop></radialGradient>
+        <path id="boxStar" d="M0 -9C1 -2 2 -1 9 0C2 1 1 2 0 9C-1 2 -2 1 -9 0C-2 -1 -1 -2 0 -9Z"></path>
+      </defs></svg>
       <div class="cube3d" id="cube">
-        <div class="face f-front"><img src="assets/caixa-frente.jpg" alt="" draggable="false"></div>
-        <div class="face f-back"><img src="assets/caixa-fundo.jpg" alt="" draggable="false"><div class="f-shade" style="background: rgba(20,6,40,0.25)"></div></div>
-        <div class="face f-right"><img src="assets/caixa-lateral.jpg" alt="" draggable="false"><div class="f-shade" style="background: rgba(20,6,40,0.18)"></div></div>
-        <div class="face f-left"><img src="assets/caixa-lateral.jpg" alt="" draggable="false"><div class="f-shade" style="background: rgba(20,6,40,0.1)"></div></div>
-        <div class="face f-top"><img src="assets/caixa-topo.jpg" alt="" draggable="false"></div>
-        <div class="face f-bottom"><img src="assets/logo.png" alt="" draggable="false" style="width: 70%; height: auto; opacity: 0.9"></div>
+        <div class="face f-front"><img src="assets/caixa-frente.png" alt="" draggable="false">
+          <svg class="box-title" viewBox="0 0 560 132" aria-hidden="true">
+            <text x="280" y="86" text-anchor="middle" font-family="Lilita One, sans-serif" font-size="60" letter-spacing="2" fill="#7ED957" stroke="#3A1250" stroke-width="18" stroke-linejoin="round" paint-order="stroke">SURPRESINHA</text>
+            <text x="280" y="82" text-anchor="middle" font-family="Lilita One, sans-serif" font-size="60" letter-spacing="2" fill="#FCF95D" stroke="#3A1250" stroke-width="13" stroke-linejoin="round" paint-order="stroke">SURPRESINHA</text>
+          </svg>
+        </div>
+        <div class="face f-back"><svg viewBox="0 0 560 395" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <rect width="560" height="395" fill="#4B1D6D"></rect>
+          <ellipse cx="280" cy="205" rx="250" ry="195" fill="url(#boxSmoke)"></ellipse>
+          <text x="280" y="300" text-anchor="middle" font-family="Lilita One, sans-serif" font-size="300" fill="#C7FF54">?</text>
+          <use href="#boxStar" fill="#fff" opacity=".9" transform="translate(72 78) scale(1.5)"></use>
+          <use href="#boxStar" fill="#fff" opacity=".8" transform="translate(486 66) scale(1.2)"></use>
+          <use href="#boxStar" fill="#fff" opacity=".9" transform="translate(498 330) scale(1.4)"></use>
+          <use href="#boxStar" fill="#fff" opacity=".7" transform="translate(64 322) scale(1)"></use>
+          <use href="#boxStar" fill="#fff" opacity=".6" transform="translate(280 36) scale(.8)"></use>
+        </svg><div class="f-shade" style="background: rgba(20,6,40,0.25)"></div></div>
+        <div class="face f-right"><svg viewBox="0 0 291 395" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <rect width="291" height="395" fill="#4B1D6D"></rect>
+          <ellipse cx="145" cy="205" rx="150" ry="190" fill="url(#boxSmoke)"></ellipse>
+          <text x="145" y="292" text-anchor="middle" font-family="Lilita One, sans-serif" font-size="270" fill="#C7FF54">?</text>
+          <use href="#boxStar" fill="#fff" opacity=".9" transform="translate(48 64) scale(1.2)"></use>
+          <use href="#boxStar" fill="#fff" opacity=".8" transform="translate(242 112) scale(.9)"></use>
+          <use href="#boxStar" fill="#fff" opacity=".9" transform="translate(224 330) scale(1.1)"></use>
+          <use href="#boxStar" fill="#fff" opacity=".7" transform="translate(58 306) scale(.7)"></use>
+          <use href="#boxStar" fill="#fff" opacity=".6" transform="translate(160 34) scale(.6)"></use>
+        </svg><div class="f-shade" style="background: rgba(20,6,40,0.18)"></div></div>
+        <div class="face f-left"><svg viewBox="0 0 291 395" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <rect width="291" height="395" fill="#4B1D6D"></rect>
+          <ellipse cx="145" cy="205" rx="150" ry="190" fill="url(#boxSmoke)"></ellipse>
+          <text x="145" y="292" text-anchor="middle" font-family="Lilita One, sans-serif" font-size="270" fill="#C7FF54">?</text>
+          <use href="#boxStar" fill="#fff" opacity=".9" transform="translate(48 64) scale(1.2)"></use>
+          <use href="#boxStar" fill="#fff" opacity=".8" transform="translate(242 112) scale(.9)"></use>
+          <use href="#boxStar" fill="#fff" opacity=".9" transform="translate(224 330) scale(1.1)"></use>
+          <use href="#boxStar" fill="#fff" opacity=".7" transform="translate(58 306) scale(.7)"></use>
+          <use href="#boxStar" fill="#fff" opacity=".6" transform="translate(160 34) scale(.6)"></use>
+        </svg><div class="f-shade" style="background: rgba(20,6,40,0.1)"></div></div>
+        <div class="face f-top"><svg viewBox="0 0 560 291" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <rect width="560" height="291" fill="#4B1D6D"></rect>
+          <text x="280" y="236" text-anchor="middle" font-family="Lilita One, sans-serif" font-size="240" fill="#5B2A80" opacity=".9">?</text>
+          <use href="#boxStar" fill="#fff" opacity=".9" transform="translate(74 62) scale(1.2)"></use>
+          <use href="#boxStar" fill="#fff" opacity=".8" transform="translate(482 54) scale(1)"></use>
+          <use href="#boxStar" fill="#fff" opacity=".9" transform="translate(502 232) scale(1.1)"></use>
+          <use href="#boxStar" fill="#fff" opacity=".7" transform="translate(62 228) scale(.9)"></use>
+          <use href="#boxStar" fill="#fff" opacity=".6" transform="translate(356 116) scale(.6)"></use>
+        </svg></div>
+        <div class="face f-bottom"><svg viewBox="0 0 560 291" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <rect width="560" height="291" fill="#3A1457"></rect>
+          <text x="280" y="236" text-anchor="middle" font-family="Lilita One, sans-serif" font-size="240" fill="#4B1D6D" opacity=".9">?</text>
+          <use href="#boxStar" fill="#fff" opacity=".8" transform="translate(74 62) scale(1.1)"></use>
+          <use href="#boxStar" fill="#fff" opacity=".7" transform="translate(486 58) scale(.9)"></use>
+          <use href="#boxStar" fill="#fff" opacity=".8" transform="translate(500 230) scale(1)"></use>
+        </svg></div>
       </div>
     </div>
     <span class="boxhint"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7ED957" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7"></path><path d="M21 3v6h-6"></path></svg>Arraste para girar a caixa</span>
